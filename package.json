@@ -1,0 +1,29 @@
+{
+  "name": "@emilbayes/capped-array",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "^14.3.1",
+    "tape": "^4.13.0"
+  },
+  "scripts": {
+    "pretest": "standard",
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilbayes/capped-array.git"
+  },
+  "keywords": [],
+  "author": "Emil Bay <github@tixz.dk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilbayes/capped-array/issues"
+  },
+  "homepage": "https://github.com/emilbayes/capped-array#readme"
+}

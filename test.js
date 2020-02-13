@@ -1,0 +1,58 @@
+const test = require('tape')
+const CappedArray = require('.')
+
+test('Simple', function (assert) {
+  var arr = new CappedArray(2)
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 0)
+  assert.ok(arr.deleted === 0)
+  arr.push('hi')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 1)
+  assert.ok(arr.deleted === 0)
+  assert.deepEquals(Array.from(arr), ['hi'])
+
+  arr.push('hello')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 2)
+  assert.ok(arr.deleted === 0)
+  assert.deepEquals(Array.from(arr), ['hi', 'hello'])
+
+  arr.push('hej')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 2)
+  assert.ok(arr.deleted === 1)
+  assert.deepEquals(Array.from(arr), ['hello', 'hej'])
+
+  arr.unshift('bonjour')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 2)
+  assert.ok(arr.deleted === 1)
+  assert.deepEquals(Array.from(arr), ['bonjour', 'hello'])
+
+  arr.unshift('foo', 'bar')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 2)
+  assert.ok(arr.deleted === 2)
+  assert.deepEquals(Array.from(arr), ['foo', 'bar'])
+
+  assert.ok(arr.pop() === 'bar')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 1)
+  assert.ok(arr.deleted === 1)
+  assert.deepEquals(Array.from(arr), ['foo'])
+
+  assert.ok(arr.pop() === 'foo')
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 0)
+  assert.ok(arr.deleted === 1)
+  assert.deepEquals(Array.from(arr), [])
+
+  assert.ok(arr.pop() === undefined)
+  assert.ok(arr.size === 2)
+  assert.ok(arr.length === 0)
+  assert.ok(arr.deleted === 0)
+  assert.deepEquals(Array.from(arr), [])
+
+  assert.end()
+})
